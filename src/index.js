@@ -3,11 +3,15 @@ import ReactDOM from "react-dom";
 
 
 /// class based component
+/// 1. JS class
+/// 2. extends React.Component
 class App extends React.Component {
 
+    /// constructor
     constructor(props) {
-        super(props)
+        super(props) /// 3.super
 
+        /// state
         this.state = { latitude: null, errorMessage: ''}
 
         window.navigator.geolocation.getCurrentPosition(
@@ -22,8 +26,10 @@ class App extends React.Component {
         );
     }
 
+    /// 3.render
     render() { 
 
+        /// JSX
         /// conditional rendering
         if(this.state.errorMessage && !this.state.latitude) {
 
