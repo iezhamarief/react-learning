@@ -1,0 +1,50 @@
+import React from "react";
+import ReactDOM from "react-dom";
+import HemisphereDisplay from "./HemisphereDisplay";
+
+
+/// class based component
+/// 1. JS class
+/// 2. extends React.Component
+class App extends React.Component {
+
+    state = { latitude: null, errorMessage: ''}
+
+    componentDidMount() {
+
+        window.navigator.geolocation.getCurrentPosition(
+
+            (position) => {
+                this.setState({latitude: position.coords.latitude}) /// setState - update/rerender state property
+            },
+            (error) => {
+                this.setState({ errorMessage: error.message })
+            }
+        );   
+    }
+
+    /// 3.render
+    render() { 
+
+        /// JSX
+        /// conditional rendering
+        if(this.state.errorMessage && !this.state.latitude) {
+
+            return <div> { this.state.errorMessage } </div>
+        }
+        
+        if(!this.state.errorMessage && this.state.latitude) {
+
+            return <div> <HemisphereDisplay latitude={ this.state.latitude }/> </div>
+        }
+
+        else {
+            return <div>Loading...</div>
+        }
+    }
+}
+
+ReactDOM.render(
+    <App />,
+    document.querySelector('#root')
+)
