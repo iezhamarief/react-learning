@@ -1,4 +1,4 @@
-
+/* north */
 .Northern {
     display: flex;
     justify-content: center;
@@ -7,6 +7,7 @@
     background-color: aquamarine;
 }
 
+/* south */
 .Southern {
     display: flex;
     justify-content: center;
